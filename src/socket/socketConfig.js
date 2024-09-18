@@ -5,6 +5,7 @@ const initializeSocketIO = (server) => {
     cors: {
       origin: "*",
       methods: ["*"],
+      credentials: true,
     },
   });
 

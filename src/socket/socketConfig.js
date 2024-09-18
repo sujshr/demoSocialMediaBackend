@@ -3,8 +3,8 @@ const socketIO = require("socket.io");
 const initializeSocketIO = (server) => {
   const io = socketIO(server, {
     cors: {
-      origin: "*", 
-      methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+      origin: "*", // Allow any origin
+      methods: ["*"], // Allow all HTTP methods
     },
   });
 

@@ -15,14 +15,13 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
- app.use(
-   cors({
-     origin: process.env.CLIENT_URI,
-     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-     credentials: true,
-   })
- );
- 
+app.use(
+  cors({
+    origin: process.env.CLIENT_URI,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  })
+);
+
 // Routes
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);

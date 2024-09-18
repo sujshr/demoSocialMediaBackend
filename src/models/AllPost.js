@@ -12,7 +12,7 @@ const postSchema = new mongoose.Schema({
 const allPostSchema = new mongoose.Schema({
   user: { type: userSchema, required: true },
   post: { type: postSchema, required: true },
-  filtered: { type: Boolean, required: true },
+  numberOfTimesNeededToBeFiltered: { type: Number, required: true },
 });
 
 module.exports = mongoose.model("AllPost", allPostSchema);

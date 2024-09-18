@@ -32,7 +32,7 @@ const createPost = async (req, res) => {
         created_at: createdAt,
         text: status,
       },
-      filtered: false,
+      numberOfTimesNeededToBeFiltered: 2,
     });
 
     await post.save();

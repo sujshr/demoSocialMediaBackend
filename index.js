@@ -1,14 +1,15 @@
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();  // This should be called at the very beginning of the file
 
-const express = require("express");
-const http = require("http");
-const connectDB = require("./src/connection/dbConnection");
-const userRoutes = require("./src/routes/userRoutes");
-const postRoutes = require("./src/routes/postRoutes");
-const { initializeSocketIO } = require("./src/socket/socketConfig");
-const { feedSocket } = require("./src/socket/feedSocket");
-const { setIO } = require("./src/controllers/postController");
-const cors = require("cors");
+import express from "express";
+import http from "http";
+import connectDB from "./src/connection/dbConnection.js";
+import userRoutes from "./src/routes/userRoutes.js";
+import postRoutes from "./src/routes/postRoutes.js";
+import { initializeSocketIO } from "./src/socket/socketConfig.js";
+import { feedSocket } from "./src/socket/feedSocket.js";
+import { setIO } from "./src/controllers/postController.js";
+import cors from "cors";
 
 const app = express();
 const PORT = process.env.PORT || 3000;

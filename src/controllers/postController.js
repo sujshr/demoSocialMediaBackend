@@ -1,6 +1,6 @@
-const jwt = require("jsonwebtoken");
-const Post = require("../models/Post");
-const AllPost = require("../models/AllPost");
+import jwt from "jsonwebtoken";
+import Post from "../models/Post.js";
+import AllPost from "../models/AllPost.js";
 
 let io;
 
@@ -10,7 +10,7 @@ const setIO = (socketIO) => {
 
 const createPost = async (req, res) => {
   try {
-    const { status } = req.body;
+    const { status, imageUrl } = req.body;
 
     const token = req.headers.authorization?.split(" ")[1];
     if (!token) {
@@ -20,17 +20,21 @@ const createPost = async (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const { username } = decoded;
 
+    const createdAt = new Date().toISOString();
     const post = new Post({
-      status,
+      user: { username },
+      post: {
+        text: status,
+        imageUrl: imageUrl || null,
+      },
       postedBy: username,
     });
 
-    const createdAt = new Date().toISOString();
     const allPost = new AllPost({
       user: { username },
       post: {
-        created_at: createdAt,
         text: status,
+        imageUrl: imageUrl || null, 
       },
       numberOfTimesNeededToBeFiltered: 2,
     });
@@ -40,9 +44,12 @@ const createPost = async (req, res) => {
 
     if (io) {
       io.emit("postCreated", {
-        postedBy: username,
-        createdAt: createdAt,
-        status: status,
+        user: { username },
+        post: {
+          text: status,
+          imageUrl: imageUrl || null, // Store image URL in AllPost model too
+        },
+        createdAt,
       });
     }
 
@@ -62,4 +69,4 @@ const getPosts = async (req, res) => {
   }
 };
 
-module.exports = { createPost, getPosts, setIO };
+export { createPost, getPosts, setIO };

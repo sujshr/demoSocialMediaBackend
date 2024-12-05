@@ -1,18 +1,16 @@
-const mongoose = require("mongoose");
-
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true },
-});
-
-const postSchema = new mongoose.Schema({
-  created_at: { type: String, required: true },
-  text: { type: String, required: true },
-});
+import mongoose from "mongoose";
 
 const allPostSchema = new mongoose.Schema({
-  user: { type: userSchema, required: true },
-  post: { type: postSchema, required: true },
-  numberOfTimesNeededToBeFiltered: { type: Number, required: true },
+  user: {
+    username: { type: String, required: true },
+  },
+  post: {
+    text: { type: String, required: true },
+    imageUrl: { type: String, default: null },
+  },
+  numberOfTimesNeededToBeFiltered: { type: Number, default: 2 },
 });
 
-module.exports = mongoose.model("AllPost", allPostSchema);
+const AllPost = mongoose.model("AllPost", allPostSchema);
+
+export default AllPost;

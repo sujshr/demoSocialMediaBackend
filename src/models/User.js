@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const argon2 = require("argon2");
+import mongoose from "mongoose";
+import argon2 from "argon2";
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
@@ -22,4 +22,6 @@ userSchema.methods.validatePassword = async function (password) {
   }
 };
 
-module.exports = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
+
+export default User;

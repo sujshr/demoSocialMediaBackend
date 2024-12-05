@@ -12,4 +12,4 @@ const feedSocket = (io) => {
   });
 };
 
-module.exports = { feedSocket };
+export { feedSocket };

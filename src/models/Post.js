@@ -6,7 +6,7 @@ const postSchema = new mongoose.Schema(
       username: { type: String, required: true },
     },
     post: {
-      text: { type: String, required: true },
+      text: { type: String, default: null },
       imageUrl: { type: String, default: null },
     },
   },

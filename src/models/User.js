@@ -4,6 +4,7 @@ import argon2 from "argon2";
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  role: { type: String, default: "user" },
 });
 
 userSchema.methods.setPassword = async function (password) {

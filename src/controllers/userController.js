@@ -46,12 +46,16 @@ export const login = async (req, res) => {
     const JWT_SECRET = process.env.JWT_SECRET;
 
     const token = jwt.sign(
-      { id: user._id, username: user.username },
+      { id: user._id, username: user.username, role: user.role },
       JWT_SECRET,
       { expiresIn: "1h" }
     );
 
-    res.json({ message: "Logged in successfully", token, username: user.username });
+    res.json({
+      message: "Logged in successfully",
+      token,
+      username: user.username,
+    });
   } catch (error) {
     res.status(500).send(error.message);
   }

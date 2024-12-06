@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import Post from "../models/Post.js";
-import AllPost from "../models/AllPost.js";
+import AllPost from "../models/UnfilteredPost.js";
 
 let io;
 

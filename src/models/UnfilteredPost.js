@@ -1,15 +1,18 @@
 import mongoose from "mongoose";
 
-const unfilteredPostSchema = new mongoose.Schema({
-  user: {
-    username: { type: String, required: true },
+const unfilteredPostSchema = new mongoose.Schema(
+  {
+    user: {
+      username: { type: String, required: true },
+    },
+    post: {
+      text: { type: String, default: null },
+      imageUrl: { type: String, default: null },
+    },
+    numberOfTimesNeededToBeFiltered: { type: Number, default: 1 },
   },
-  post: {
-    text: { type: String, default: null },
-    imageUrl: { type: String, default: null },
-  },
-  numberOfTimesNeededToBeFiltered: { type: Number, default: 1 },
-});
+  { timestamps: true }
+);
 
 const UnfilteredPost = mongoose.model("UnfilteredPost", unfilteredPostSchema);
 

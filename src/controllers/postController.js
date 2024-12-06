@@ -36,7 +36,6 @@ const createPost = async (req, res) => {
         text: status,
         imageUrl: imageUrl || null,
       },
-      numberOfTimesNeededToBeFiltered: 2,
     });
 
     await post.save();
@@ -124,7 +123,7 @@ const deletePost = async (req, res) => {
     }
 
     await Post.findByIdAndDelete(postId);
-    await AllPost.findOneAndDelete({
+    await UnfilteredPost.findOneAndDelete({
       "user.username": post.user.username,
       "post.text": post.post.text,
       "post.imageUrl": post.post.imageUrl,

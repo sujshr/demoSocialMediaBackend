@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import Post from "../models/Post.js";
-import AllPost from "../models/UnfilteredPost.js";
+import UnfilteredPost from "../models/UnfilteredPost.js";
 
 let io;
 
@@ -30,7 +30,7 @@ const createPost = async (req, res) => {
       postedBy: username,
     });
 
-    const allPost = new AllPost({
+    const unfilteredPost = new UnfilteredPost({
       user: { username },
       post: {
         text: status,
@@ -40,7 +40,7 @@ const createPost = async (req, res) => {
     });
 
     await post.save();
-    await allPost.save();
+    await unfilteredPost.save();
 
     if (io) {
       io.emit("postCreated", {

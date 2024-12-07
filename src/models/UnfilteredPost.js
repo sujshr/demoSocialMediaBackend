@@ -9,7 +9,7 @@ const unfilteredPostSchema = new mongoose.Schema(
       text: { type: String, default: null },
       imageUrl: { type: String, default: null },
     },
-    numberOfTimesNeededToBeFiltered: { type: Number, default: 1 },
+    fetched: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
